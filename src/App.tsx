@@ -108,68 +108,99 @@ function App() {
       <div className="absolute top-0 left-0 pointer-events-none opacity-0">
         <div ref={exportContainerRef}>
           {/* Page 1: Front */}
-          <div className="pdf-card page-break flex flex-col items-center justify-center relative border pdf-border-white-10 pdf-bg-black">
+          <div className="pdf-card page-break flex flex-col items-center justify-center relative pdf-bg-dark overflow-hidden">
              {/* Background Grain */}
-             <div className="absolute inset-0 bg-grain opacity-20"></div>
+             <div className="absolute inset-0 bg-grain opacity-10"></div>
+             
+             {/* Background Decoration */}
+             <div className="absolute -left-10 top-10 opacity-5">
+                <span className="text-[150px] font-rounded font-bold leading-none text-transparent" style={{ WebkitTextStroke: '2px white' }}>ba</span>
+             </div>
+             <div className="absolute -right-10 bottom-10 opacity-5 rotate-180">
+                <span className="text-[150px] font-rounded font-bold leading-none text-transparent" style={{ WebkitTextStroke: '2px white' }}>ba</span>
+             </div>
              
              {/* Logo */}
-             <div className="relative w-32 h-32 flex items-center justify-center border pdf-border-white-20 rounded-sm mb-8 scale-75 overflow-hidden">
-                <img 
-                  src="https://i.postimg.cc/yYR2j607/IMG-20260219-WA0008.jpg" 
-                  alt="B&A Logo" 
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
-             </div>
-
-             {/* Slogan */}
-             <div className="absolute bottom-8 text-center">
-                <p className="text-[10px] uppercase tracking-[4px] font-light pdf-text-white-80">
+             <div className="relative z-10 flex flex-col items-center gap-4">
+                <div className="w-24 h-auto">
+                   <img 
+                     src="https://i.postimg.cc/yYR2j607/IMG-20260219-WA0008.jpg" 
+                     alt="B&A Logo" 
+                     className="w-full h-full object-contain filter invert brightness-0 contrast-200"
+                     referrerPolicy="no-referrer"
+                   />
+                </div>
+                <p className="text-[10px] uppercase tracking-[0.2em] font-rounded font-bold pdf-text-white">
                   Trust the process
                 </p>
              </div>
           </div>
 
           {/* Page 2: Back */}
-          {/* html2pdf will create a new page if the content exceeds the page height */}
-          <div className="pdf-card flex flex-col relative border pdf-border-white-10 p-8 justify-between pdf-bg-black">
-             <div className="absolute inset-0 bg-grain opacity-20"></div>
+          <div className="pdf-card flex flex-col relative p-6 justify-between pdf-bg-light pdf-text-dark">
+             <div className="absolute inset-0 bg-grain opacity-10"></div>
 
-             {/* Top Left Logo */}
-             <div className="w-8 h-8 border pdf-border-white-20 flex items-center justify-center overflow-hidden">
-                <img 
-                  src="https://i.postimg.cc/yYR2j607/IMG-20260219-WA0008.jpg" 
-                  alt="B&A Logo" 
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
+             {/* Top Section */}
+             <div className="flex justify-between items-start w-full relative z-10">
+               {/* Name & Title */}
+               <div className="flex flex-col">
+                 <h2 className="text-lg font-rounded font-bold pdf-text-dark">Mr Asap Francky</h2>
+                 <p className="text-[9px] font-bold pdf-text-dark opacity-80 uppercase tracking-wide">Réalisateur</p>
+               </div>
+
+               {/* Services List */}
+               <div className="flex flex-col items-end space-y-1">
+                 <div className="flex items-center gap-1">
+                   <div className="w-2 h-2 rounded-full pdf-border-dark flex items-center justify-center">
+                     <div className="w-1 h-1 pdf-bg-dark rounded-full"></div>
+                   </div>
+                   <span className="text-[7px] font-medium pdf-text-dark opacity-80">Production Audiovisuel</span>
+                 </div>
+                 <div className="flex items-center gap-1">
+                   <div className="w-2 h-2 rounded-full pdf-border-dark flex items-center justify-center">
+                     <div className="w-1 h-1 pdf-bg-dark rounded-full"></div>
+                   </div>
+                   <span className="text-[7px] font-medium pdf-text-dark opacity-80">Spots publicitaires</span>
+                 </div>
+                 <div className="flex items-center gap-1">
+                   <div className="w-2 h-2 rounded-full pdf-border-dark flex items-center justify-center">
+                     <div className="w-1 h-1 pdf-bg-dark rounded-full"></div>
+                   </div>
+                   <span className="text-[7px] font-medium pdf-text-dark opacity-80">Streetwear</span>
+                 </div>
+               </div>
              </div>
 
-             {/* Center Info */}
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full px-4">
-                <h2 className="text-2xl font-bold tracking-tight mb-2 pdf-text-white">Sessou Franck</h2>
-                <div className="text-[7px] pdf-text-gray uppercase tracking-wider font-light leading-relaxed">
-                  <p>Réalisation vidéo • Création de contenu • Mariage</p>
-                  <p>Direction Artistique • Conseil en image</p>
+             {/* Center Logo */}
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center mt-2 z-0">
+                <div className="w-12 h-auto mb-1">
+                  <img 
+                    src="https://i.postimg.cc/yYR2j607/IMG-20260219-WA0008.jpg" 
+                    alt="B&A Logo" 
+                    className="w-full h-full object-contain mix-blend-multiply"
+                    referrerPolicy="no-referrer"
+                  />
                 </div>
+                <p className="text-[6px] uppercase tracking-[0.2em] font-rounded font-bold pdf-text-dark">
+                 Trust the process
+               </p>
              </div>
 
-             {/* Bottom Section: Contact + QR */}
-             <div className="flex items-end justify-between w-full">
+             {/* Bottom Section */}
+             <div className="flex items-end justify-between w-full mt-auto relative z-10">
                 {/* Contact Info */}
-                <div className="flex flex-col items-start text-[8px] font-light tracking-wide pdf-text-white-80 space-y-0.5">
-                   <p>+228 96 36 77 05</p>
-                   <p>bandA.studio@outlook.com</p>
-                   <p className="opacity-60">Lomé - Togo</p>
+                <div className="flex flex-col items-start gap-0.5">
+                   <p className="text-[8px] font-bold pdf-text-dark">+228 96 36 77 05</p>
+                   <p className="text-[8px] font-medium pdf-text-dark opacity-80">bandA.studio@outlook.com</p>
                 </div>
 
-                {/* QR Code */}
-                <div className="w-10 h-10 bg-white p-0.5">
-                   <img 
-                     src="./code.png" 
-                     alt="QR Code" 
-                     className="w-full h-full object-cover"
-                   />
+                {/* Address */}
+                <div className="flex flex-col items-end text-right">
+                   <p className="text-[7px] font-medium pdf-text-dark opacity-70 leading-tight">
+                     Lomé, Quartier Attiegou<br/>
+                     derrière la cloture de l'aéroport<br/>
+                     international de Lomé.
+                   </p>
                 </div>
              </div>
           </div>
