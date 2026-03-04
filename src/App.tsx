@@ -32,7 +32,7 @@ function App() {
         filename: 'BA_BusinessCard.pdf',
         image: { type: 'jpeg' as const, quality: 0.98 },
         html2canvas: { scale: 4, useCORS: true, backgroundColor: '#000000' },
-        jsPDF: { unit: 'mm', format: [85, 55], orientation: 'landscape' as const }
+        jsPDF: { unit: 'mm', format: [85, 55] as [number, number], orientation: 'landscape' as const }
       };
 
       // We need to generate two pages: Front and Back
@@ -146,15 +146,19 @@ function App() {
              </div>
 
              {/* Center Info */}
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full">
-                <h2 className="text-2xl font-bold tracking-tight mb-1 pdf-text-white">Mr Asap Francky</h2>
-                <p className="text-sm pdf-text-gray uppercase tracking-wider font-light">Réalisateur</p>
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full px-4">
+                <h2 className="text-2xl font-bold tracking-tight mb-2 pdf-text-white">Sessou Franck</h2>
+                <div className="text-[7px] pdf-text-gray uppercase tracking-wider font-light leading-relaxed">
+                  <p>Réalisation vidéo • Création de contenu • Mariage</p>
+                  <p>Direction Artistique • Conseil en image</p>
+                </div>
              </div>
 
              {/* Bottom Info */}
-             <div className="flex flex-col items-start text-[9px] font-light tracking-wide pdf-text-white-80 space-y-1">
-                <p>+225 01 01 38 77 66</p>
-                <p className="uppercase opacity-60">Productos Aucsovel</p>
+             <div className="flex flex-col items-start text-[8px] font-light tracking-wide pdf-text-white-80 space-y-0.5">
+                <p>+228 96 36 77 05</p>
+                <p>bandA.studio@outlook.com</p>
+                <p className="opacity-60">Lomé - Togo</p>
              </div>
           </div>
         </div>

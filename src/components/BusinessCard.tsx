@@ -91,15 +91,19 @@ const BusinessCard: React.FC<BusinessCardProps> = ({ isFlipped, onFlip }) => {
           </div>
 
           {/* Center Info */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full">
-            <h2 className="text-2xl font-bold tracking-tight mb-1">Mr Asap Francky</h2>
-            <p className="text-sm text-[#AAAAAA] uppercase tracking-wider font-light">Réalisateur</p>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full px-4">
+            <h2 className="text-2xl font-bold tracking-tight mb-2">Sessou Franck</h2>
+            <div className="text-[7px] text-[#AAAAAA] uppercase tracking-wider font-light leading-relaxed">
+              <p>Réalisation vidéo • Création de contenu • Mariage</p>
+              <p>Direction Artistique • Conseil en image</p>
+            </div>
           </div>
 
           {/* Bottom Info */}
-          <div className="flex flex-col items-start text-[9px] font-light tracking-wide text-white/80 space-y-1">
-            <p>+225 01 01 38 77 66</p>
-            <p className="uppercase opacity-60">Productos Aucsovel</p>
+          <div className="flex flex-col items-start text-[8px] font-light tracking-wide text-white/80 space-y-0.5">
+            <p>+228 96 36 77 05</p>
+            <p>bandA.studio@outlook.com</p>
+            <p className="opacity-60">Lomé - Togo</p>
           </div>
         </div>
       </div>
