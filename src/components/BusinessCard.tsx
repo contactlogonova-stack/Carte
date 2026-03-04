@@ -1,4 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Download, Loader2 } from 'lucide-react';
+// @ts-ignore
+import html2pdf from 'html2pdf.js';
 
 interface BusinessCardProps {
   isFlipped: boolean;
@@ -48,119 +51,71 @@ const BusinessCard: React.FC<BusinessCardProps> = ({ isFlipped, onFlip }) => {
         className="card-object"
         style={{
           transform: `rotateX(${rotateX}deg) rotateY(${currentRotateY}deg)`,
+          transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)' // Smooth transition for flip
         }}
       >
-        {/* FRONT FACE (Dark) */}
-        <div className="card-face card-front flex flex-col items-center justify-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-grain opacity-10 pointer-events-none"></div>
+        {/* FRONT FACE */}
+        <div className="card-face card-front flex flex-col items-center justify-center relative border border-white/10">
+          <div className="absolute inset-0 bg-grain opacity-20 pointer-events-none"></div>
           
-          {/* Background Decoration */}
-          <div className="absolute -left-10 top-10 opacity-5 pointer-events-none">
-             <span className="text-[150px] font-rounded font-bold leading-none text-transparent" style={{ WebkitTextStroke: '2px white' }}>ba</span>
-          </div>
-          <div className="absolute -right-10 bottom-10 opacity-5 pointer-events-none rotate-180">
-             <span className="text-[150px] font-rounded font-bold leading-none text-transparent" style={{ WebkitTextStroke: '2px white' }}>ba</span>
+          {/* Logo Container */}
+          <div className="relative w-32 h-32 flex items-center justify-center border border-white/20 rounded-sm mb-8 overflow-hidden">
+            <img 
+              src="https://i.postimg.cc/yYR2j607/IMG-20260219-WA0008.jpg" 
+              alt="B&A Logo" 
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
           </div>
 
-          {/* Logo Container */}
-          <div className="relative z-10 flex flex-col items-center gap-4">
-            <div className="w-24 h-auto">
-               {/* Using the logo from the image URL provided in previous code, assuming it's the right one. 
-                   If not, I'll use a text placeholder or the image. 
-                   The previous code used https://i.postimg.cc/yYR2j607/IMG-20260219-WA0008.jpg 
-                   Let's keep using it but maybe apply a filter if it's not transparent.
-                   Actually, for the dark card, the logo should be white. 
-                   If the image is black on white, I might need to invert it or use a mix-blend-mode.
-               */}
-               <img 
-                 src="https://i.postimg.cc/yYR2j607/IMG-20260219-WA0008.jpg" 
-                 alt="B&A Logo" 
-                 className="w-full h-full object-contain filter invert brightness-0 contrast-200" 
-                 referrerPolicy="no-referrer"
-               />
-            </div>
-            
-            <p className="text-[10px] uppercase tracking-[0.2em] font-rounded font-bold text-white">
+          {/* Slogan */}
+          <div className="absolute bottom-8 text-center">
+            <p className="text-[10px] uppercase tracking-[4px] font-light text-white/80">
               Trust the process
             </p>
           </div>
         </div>
 
-        {/* BACK FACE (Light) */}
-        <div className="card-face card-back flex flex-col relative p-6 justify-between bg-[#F2F0E9] text-[#333333]">
-          <div className="absolute inset-0 bg-grain opacity-10 pointer-events-none"></div>
+        {/* BACK FACE */}
+        <div className="card-face card-back flex flex-col relative border border-white/10 p-8 justify-between">
+          <div className="absolute inset-0 bg-grain opacity-20 pointer-events-none"></div>
 
-          {/* Top Section */}
-          <div className="flex justify-between items-start w-full">
-            {/* Name & Title */}
-            <div className="flex flex-col">
-              <h2 className="text-lg font-rounded font-bold text-[#333333]">Mr Asap Francky</h2>
-              <p className="text-[9px] font-bold text-[#333333]/80 uppercase tracking-wide">Réalisateur</p>
-            </div>
-
-            {/* Services List */}
-            <div className="flex flex-col items-end space-y-1">
-              <div className="flex items-center gap-1">
-                <div className="w-2 h-2 rounded-full border border-[#333333] flex items-center justify-center">
-                  <div className="w-1 h-1 bg-[#333333] rounded-full"></div>
-                </div>
-                <span className="text-[7px] font-medium text-[#333333]/80">Production Audiovisuel</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <div className="w-2 h-2 rounded-full border border-[#333333] flex items-center justify-center">
-                  <div className="w-1 h-1 bg-[#333333] rounded-full"></div>
-                </div>
-                <span className="text-[7px] font-medium text-[#333333]/80">Spots publicitaires</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <div className="w-2 h-2 rounded-full border border-[#333333] flex items-center justify-center">
-                  <div className="w-1 h-1 bg-[#333333] rounded-full"></div>
-                </div>
-                <span className="text-[7px] font-medium text-[#333333]/80">Streetwear</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Center Logo */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center opacity-20 scale-150 pointer-events-none">
+          {/* Top Left Logo */}
+          <div className="w-8 h-8 border border-white/20 flex items-center justify-center overflow-hidden">
              <img 
                src="https://i.postimg.cc/yYR2j607/IMG-20260219-WA0008.jpg" 
                alt="B&A Logo" 
-               className="w-20 h-auto object-contain mix-blend-multiply"
+               className="w-full h-full object-cover"
                referrerPolicy="no-referrer"
              />
           </div>
-          
-          {/* Real Center Logo (Small) */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center mt-2">
-             <div className="w-12 h-auto mb-1">
-               <img 
-                 src="https://i.postimg.cc/yYR2j607/IMG-20260219-WA0008.jpg" 
-                 alt="B&A Logo" 
-                 className="w-full h-full object-contain mix-blend-multiply"
-                 referrerPolicy="no-referrer"
-               />
-             </div>
-             <p className="text-[6px] uppercase tracking-[0.2em] font-rounded font-bold text-[#333333]">
-              Trust the process
-            </p>
+
+          {/* Center Info */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full px-4">
+            <h2 className="text-2xl font-bold tracking-tight mb-2">Sessou Franck</h2>
+            <div className="text-[7px] text-[#AAAAAA] uppercase tracking-wider font-light leading-relaxed">
+              <p>Réalisation vidéo • Création de contenu • Mariage</p>
+              <p>Direction Artistique • Conseil en image</p>
+            </div>
           </div>
 
-          {/* Bottom Section */}
-          <div className="flex items-end justify-between w-full mt-auto">
+          {/* Bottom Section: Contact + QR */}
+          <div className="flex items-end justify-between w-full">
             {/* Contact Info */}
-            <div className="flex flex-col items-start gap-0.5">
-              <p className="text-[8px] font-bold text-[#333333]">+228 96 36 77 05</p>
-              <p className="text-[8px] font-medium text-[#333333]/80">bandA.studio@outlook.com</p>
+            <div className="flex flex-col items-start text-[8px] font-light tracking-wide text-white/80 space-y-0.5">
+              <p>+228 96 36 77 05</p>
+              <p>bandA.studio@outlook.com</p>
+              <p className="opacity-60">Lomé - Togo</p>
             </div>
 
-            {/* Address */}
-            <div className="flex flex-col items-end text-right">
-               <p className="text-[7px] font-medium text-[#333333]/70 leading-tight">
-                 Lomé, Quartier Attiegou<br/>
-                 derrière la cloture de l'aéroport<br/>
-                 international de Lomé.
-               </p>
+            {/* QR Code */}
+            <div className="w-10 h-10 bg-white p-0.5">
+               <img 
+                 src="https://i.postimg.cc/LsXFLNZy/code.png" 
+                 alt="QR Code" 
+                 className="w-full h-full object-cover"
+                 referrerPolicy="no-referrer"
+               />
             </div>
           </div>
         </div>
