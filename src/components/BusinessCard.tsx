@@ -99,11 +99,23 @@ const BusinessCard: React.FC<BusinessCardProps> = ({ isFlipped, onFlip }) => {
             </div>
           </div>
 
-          {/* Bottom Info */}
-          <div className="flex flex-col items-start text-[8px] font-light tracking-wide text-white/80 space-y-0.5">
-            <p>+228 96 36 77 05</p>
-            <p>bandA.studio@outlook.com</p>
-            <p className="opacity-60">Lomé - Togo</p>
+          {/* Bottom Section: Contact + QR */}
+          <div className="flex items-end justify-between w-full">
+            {/* Contact Info */}
+            <div className="flex flex-col items-start text-[8px] font-light tracking-wide text-white/80 space-y-0.5">
+              <p>+228 96 36 77 05</p>
+              <p>bandA.studio@outlook.com</p>
+              <p className="opacity-60">Lomé - Togo</p>
+            </div>
+
+            {/* QR Code */}
+            <div className="w-10 h-10 bg-white p-0.5">
+               <img 
+                 src="./code.png" 
+                 alt="QR Code" 
+                 className="w-full h-full object-cover"
+               />
+            </div>
           </div>
         </div>
       </div>
