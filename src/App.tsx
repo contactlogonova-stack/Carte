@@ -112,6 +112,18 @@ function App() {
         </div>
       </main>
 
+      {/* Developer Credit */}
+      <footer className="absolute bottom-2 md:bottom-4 z-20">
+        <a 
+          href="https://logonova.site" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-white/20 text-[8px] md:text-[10px] uppercase tracking-widest hover:text-white/60 transition-colors"
+        >
+          Dev by APEDO Elias josue Kossi
+        </a>
+      </footer>
+
       {/* Hidden Container for PDF Generation */}
       {/* We render both faces flat here for the export */}
       <div className="absolute top-0 left-0 pointer-events-none opacity-0">
