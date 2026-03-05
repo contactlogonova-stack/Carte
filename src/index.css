@@ -132,9 +132,9 @@
 /* Safe colors for PDF export (html2canvas compatibility) */
 .pdf-bg-black { background-color: #000000; }
 .pdf-text-white { color: #ffffff; }
-.pdf-text-white-80 { color: rgba(255, 255, 255, 0.8); }
-.pdf-text-white-60 { color: rgba(255, 255, 255, 0.6); }
-.pdf-text-white-40 { color: rgba(255, 255, 255, 0.4); }
+.pdf-text-white-80 { color: #d1d5db; /* Solid gray-300 instead of rgba for better PDF rendering */ }
+.pdf-text-white-60 { color: #9ca3af; /* Solid gray-400 */ }
+.pdf-text-white-40 { color: #6b7280; /* Solid gray-500 */ }
 .pdf-text-gray { color: #AAAAAA; }
 .pdf-border-white-10 { border-color: rgba(255, 255, 255, 0.1); }
 .pdf-border-white-20 { border-color: rgba(255, 255, 255, 0.2); }

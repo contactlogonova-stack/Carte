@@ -117,12 +117,12 @@ function App() {
       <div className="absolute top-0 left-0 pointer-events-none opacity-0">
         <div ref={exportContainerRef}>
           {/* Page 1: Front */}
-          <div className="pdf-card page-break flex flex-col items-center justify-center relative border pdf-border-white-10 pdf-bg-black">
+          <div className="pdf-card flex flex-col items-center justify-center relative border pdf-border-white-10 pdf-bg-black">
              {/* Background Grain */}
-             <div className="absolute inset-0 bg-grain opacity-20"></div>
+             <div className="absolute inset-0 bg-grain opacity-20 z-0"></div>
              
              {/* Logo */}
-             <div className="relative w-32 h-32 flex items-center justify-center border pdf-border-white-20 rounded-sm mb-8 scale-75 overflow-hidden">
+             <div className="relative z-10 w-32 h-32 flex items-center justify-center border pdf-border-white-20 rounded-sm mb-8 scale-75 overflow-hidden">
                 <img 
                   src="https://i.postimg.cc/yYR2j607/IMG-20260219-WA0008.jpg" 
                   alt="B&A Logo" 
@@ -132,7 +132,7 @@ function App() {
              </div>
 
              {/* Slogan */}
-             <div className="absolute bottom-8 text-center">
+             <div className="absolute bottom-8 text-center z-10">
                 <p className="text-[10px] uppercase tracking-[4px] font-light pdf-text-white-80">
                   Trust the process
                 </p>
@@ -140,33 +140,34 @@ function App() {
           </div>
 
           {/* Page 2: Back */}
-          {/* html2pdf will create a new page if the content exceeds the page height */}
-          <div className="pdf-card flex flex-col relative border pdf-border-white-10 p-8 justify-between pdf-bg-black">
-             <div className="absolute inset-0 bg-grain opacity-20"></div>
+          <div className="pdf-card flex flex-col relative border pdf-border-white-10 p-6 justify-between pdf-bg-black">
+             <div className="absolute inset-0 bg-grain opacity-20 z-0"></div>
 
-             {/* Top Left Logo */}
-             <div className="w-8 h-8 border pdf-border-white-20 flex items-center justify-center overflow-hidden">
-                <img 
-                  src="https://i.postimg.cc/yYR2j607/IMG-20260219-WA0008.jpg" 
-                  alt="B&A Logo" 
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
+             {/* Top Section: Logo */}
+             <div className="relative z-10 w-full flex justify-start">
+                 <div className="w-8 h-8 border pdf-border-white-20 flex items-center justify-center overflow-hidden">
+                    <img 
+                      src="https://i.postimg.cc/yYR2j607/IMG-20260219-WA0008.jpg" 
+                      alt="B&A Logo" 
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                 </div>
              </div>
 
-             {/* Center Info */}
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full px-4">
-                <h2 className="text-2xl font-bold tracking-tight mb-2 pdf-text-white">B&A</h2>
-                <div className="text-[7px] pdf-text-gray uppercase tracking-wider font-light leading-relaxed">
+             {/* Center Section: Name & Services */}
+             <div className="relative z-10 flex flex-col items-center justify-center text-center flex-grow py-2">
+                <h2 className="text-xl font-bold tracking-tight mb-1 pdf-text-white">B&A</h2>
+                <div className="text-[6px] pdf-text-gray uppercase tracking-wider font-light leading-relaxed">
                   <p>Réalisation de vidéos professionnelles • Création de contenu • Mariage</p>
                   <p>Direction artistique • Conseiller en image</p>
                 </div>
              </div>
 
              {/* Bottom Section: Contact + QR */}
-             <div className="flex items-end justify-between w-full">
+             <div className="relative z-10 flex items-end justify-between w-full">
                 {/* Contact Info */}
-                <div className="flex flex-col items-start text-[8px] font-light tracking-wide pdf-text-white-80 space-y-0.5">
+                <div className="flex flex-col items-start text-[8px] tracking-wide pdf-text-white-80 space-y-0.5">
                    <p>+228 96 36 77 05</p>
                    <p>bandA.studio@outlook.com</p>
                    <p className="opacity-60">Lomé - Togo</p>

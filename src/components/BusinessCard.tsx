@@ -57,10 +57,10 @@ const BusinessCard: React.FC<BusinessCardProps> = ({ isFlipped, onFlip }) => {
         >
           {/* FRONT FACE */}
         <div className="card-face card-front flex flex-col items-center justify-center relative border border-white/10">
-          <div className="absolute inset-0 bg-grain opacity-20 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-grain opacity-20 pointer-events-none z-0"></div>
           
           {/* Logo Container */}
-          <div className="relative w-32 h-32 flex items-center justify-center border border-white/20 rounded-sm mb-8 overflow-hidden">
+          <div className="relative z-10 w-32 h-32 flex items-center justify-center border border-white/20 rounded-sm mb-8 overflow-hidden">
             <img 
               src="https://i.postimg.cc/yYR2j607/IMG-20260219-WA0008.jpg" 
               alt="B&A Logo" 
@@ -70,7 +70,7 @@ const BusinessCard: React.FC<BusinessCardProps> = ({ isFlipped, onFlip }) => {
           </div>
 
           {/* Slogan */}
-          <div className="absolute bottom-8 text-center">
+          <div className="absolute bottom-8 text-center z-10">
             <p className="text-[10px] uppercase tracking-[4px] font-light text-white/80">
               Trust the process
             </p>
@@ -78,30 +78,32 @@ const BusinessCard: React.FC<BusinessCardProps> = ({ isFlipped, onFlip }) => {
         </div>
 
         {/* BACK FACE */}
-        <div className="card-face card-back flex flex-col relative border border-white/10 p-8 justify-between">
-          <div className="absolute inset-0 bg-grain opacity-20 pointer-events-none"></div>
+        <div className="card-face card-back flex flex-col relative border border-white/10 p-6 justify-between">
+          <div className="absolute inset-0 bg-grain opacity-20 pointer-events-none z-0"></div>
 
-          {/* Top Left Logo */}
-          <div className="w-8 h-8 border border-white/20 flex items-center justify-center overflow-hidden">
-             <img 
-               src="https://i.postimg.cc/yYR2j607/IMG-20260219-WA0008.jpg" 
-               alt="B&A Logo" 
-               className="w-full h-full object-cover"
-               referrerPolicy="no-referrer"
-             />
+          {/* Top Section: Logo */}
+          <div className="relative z-10 w-full flex justify-start">
+            <div className="w-8 h-8 border border-white/20 flex items-center justify-center overflow-hidden">
+               <img 
+                 src="https://i.postimg.cc/yYR2j607/IMG-20260219-WA0008.jpg" 
+                 alt="B&A Logo" 
+                 className="w-full h-full object-cover"
+                 referrerPolicy="no-referrer"
+               />
+            </div>
           </div>
 
-          {/* Center Info */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full px-4">
-            <h2 className="text-2xl font-bold tracking-tight mb-2">B&A</h2>
-            <div className="text-[7px] text-[#AAAAAA] uppercase tracking-wider font-light leading-relaxed">
+          {/* Center Section: Name & Services */}
+          <div className="relative z-10 flex flex-col items-center justify-center text-center flex-grow py-2">
+            <h2 className="text-xl font-bold tracking-tight mb-1">B&A</h2>
+            <div className="text-[6px] text-[#AAAAAA] uppercase tracking-wider font-light leading-relaxed">
               <p>Réalisation de vidéos professionnelles • Création de contenu • Mariage</p>
               <p>Direction artistique • Conseiller en image</p>
             </div>
           </div>
 
           {/* Bottom Section: Contact + QR */}
-          <div className="flex items-end justify-between w-full">
+          <div className="relative z-10 flex items-end justify-between w-full">
             {/* Contact Info */}
             <div className="flex flex-col items-start text-[8px] font-light tracking-wide text-white/80 space-y-0.5">
               <p>+228 96 36 77 05</p>
