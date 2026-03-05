@@ -58,33 +58,42 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-[100dvh] bg-black flex flex-col items-center justify-center p-4 relative overflow-hidden supports-[min-height:100dvh]:min-h-[100dvh]">
       {/* Background Ambient Light */}
       <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-white/5 rounded-full blur-[120px] pointer-events-none"></div>
       <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-white/5 rounded-full blur-[120px] pointer-events-none"></div>
 
       {/* Main Content */}
-      <main className="z-10 flex flex-col items-center gap-12">
+      <main className="z-10 flex flex-col items-center gap-6 md:gap-12 w-full max-w-full">
         <div className="text-center space-y-2">
-          <h1 className="text-white text-3xl font-light tracking-[0.2em] uppercase">B & A</h1>
-          <p className="text-white/40 text-xs tracking-widest uppercase">Interactive Experience</p>
+          <div className="w-20 h-20 md:w-24 md:h-24 mx-auto rounded-sm overflow-hidden border border-white/10">
+            <img 
+              src="https://i.postimg.cc/yYR2j607/IMG-20260219-WA0008.jpg" 
+              alt="B&A Logo" 
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
         </div>
 
         {/* 3D Card Container */}
-        <div className="py-10">
+        {/* The card scales via CSS transform, so we need a container that centers it */}
+        <div className="py-4 md:py-10 flex items-center justify-center w-full">
           <BusinessCard isFlipped={isFlipped} onFlip={handleFlip} />
         </div>
 
         {/* Controls */}
         <div className="flex flex-col items-center gap-4">
-          <p className="text-white/30 text-[10px] uppercase tracking-widest animate-pulse">
-            Click card to flip • Hover to tilt
+          <p className="text-white/30 text-[9px] md:text-[10px] uppercase tracking-widest animate-pulse text-center px-4">
+            {/* Mobile-friendly text */}
+            <span className="block md:hidden">Tap to flip</span>
+            <span className="hidden md:block">Click card to flip • Hover to tilt</span>
           </p>
           
           <button 
             onClick={handleExport}
             disabled={isExporting}
-            className="group relative px-8 py-3 bg-transparent border border-white/20 text-white text-xs uppercase tracking-widest transition-all hover:bg-white hover:text-black disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden"
+            className="group relative px-6 py-2.5 md:px-8 md:py-3 bg-transparent border border-white/20 text-white text-[10px] md:text-xs uppercase tracking-widest transition-all hover:bg-white hover:text-black disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden"
           >
             <span className="relative z-10 flex items-center gap-2">
               {isExporting ? (
@@ -147,10 +156,10 @@ function App() {
 
              {/* Center Info */}
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full px-4">
-                <h2 className="text-2xl font-bold tracking-tight mb-2 pdf-text-white">Sessou Franck</h2>
+                <h2 className="text-2xl font-bold tracking-tight mb-2 pdf-text-white">B&A</h2>
                 <div className="text-[7px] pdf-text-gray uppercase tracking-wider font-light leading-relaxed">
-                  <p>Réalisation vidéo • Création de contenu • Mariage</p>
-                  <p>Direction Artistique • Conseil en image</p>
+                  <p>Réalisation de vidéos professionnelles • Création de contenu • Mariage</p>
+                  <p>Direction artistique • Conseiller en image</p>
                 </div>
              </div>
 

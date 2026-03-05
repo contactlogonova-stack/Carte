@@ -46,15 +46,16 @@ const BusinessCard: React.FC<BusinessCardProps> = ({ isFlipped, onFlip }) => {
       onMouseLeave={handleMouseLeave}
       onClick={onFlip}
     >
-      <div 
-        ref={cardRef}
-        className="card-object"
-        style={{
-          transform: `rotateX(${rotateX}deg) rotateY(${currentRotateY}deg)`,
-          transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)' // Smooth transition for flip
-        }}
-      >
-        {/* FRONT FACE */}
+      <div className="card-scaler">
+        <div 
+          ref={cardRef}
+          className="card-object"
+          style={{
+            transform: `rotateX(${rotateX}deg) rotateY(${currentRotateY}deg)`,
+            transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)' // Smooth transition for flip
+          }}
+        >
+          {/* FRONT FACE */}
         <div className="card-face card-front flex flex-col items-center justify-center relative border border-white/10">
           <div className="absolute inset-0 bg-grain opacity-20 pointer-events-none"></div>
           
@@ -92,10 +93,10 @@ const BusinessCard: React.FC<BusinessCardProps> = ({ isFlipped, onFlip }) => {
 
           {/* Center Info */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full px-4">
-            <h2 className="text-2xl font-bold tracking-tight mb-2">Sessou Franck</h2>
+            <h2 className="text-2xl font-bold tracking-tight mb-2">B&A</h2>
             <div className="text-[7px] text-[#AAAAAA] uppercase tracking-wider font-light leading-relaxed">
-              <p>Réalisation vidéo • Création de contenu • Mariage</p>
-              <p>Direction Artistique • Conseil en image</p>
+              <p>Réalisation de vidéos professionnelles • Création de contenu • Mariage</p>
+              <p>Direction artistique • Conseiller en image</p>
             </div>
           </div>
 
@@ -120,6 +121,7 @@ const BusinessCard: React.FC<BusinessCardProps> = ({ isFlipped, onFlip }) => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

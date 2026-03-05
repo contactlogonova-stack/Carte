@@ -5,10 +5,28 @@
     --bg-color: #000000;
     --text-color: #FFFFFF;
     --accent-color: #AAAAAA;
-    --card-width: 85mm;
-    --card-height: 55mm;
-    --card-scale: 1.6; /* For display on screen */
+    
+    /* Card Dimensions Configuration */
+    --card-width-mm: 85mm;
+    --card-height-mm: 55mm;
+    --design-scale: 1.6; /* The internal resolution scale (approx 515px width) */
+    
+    /* Calculated Design Size (Fixed Internal Resolution) */
+    --design-width: calc(var(--card-width-mm) * var(--design-scale));
+    --design-height: calc(var(--card-height-mm) * var(--design-scale));
+    
+    /* Responsive Scale Factor (Multiplies the Design Size) */
+    --responsive-scale: 0.55; /* Default for smallest screens (iPhone SE/1) */
   }
+
+  /* Responsive Breakpoints */
+  @media (min-width: 350px) { :root { --responsive-scale: 0.65; } }
+  @media (min-width: 400px) { :root { --responsive-scale: 0.75; } }
+  @media (min-width: 640px) { :root { --responsive-scale: 1.0; } }
+  @media (min-width: 1024px) { :root { --responsive-scale: 1.2; } }
+  @media (min-width: 1280px) { :root { --responsive-scale: 1.4; } }
+  @media (min-width: 1536px) { :root { --responsive-scale: 1.8; } } /* Large Screens / TV */
+  @media (min-width: 2500px) { :root { --responsive-scale: 2.5; } } /* 4K TV */
 
   body {
     background-color: var(--bg-color);
@@ -16,7 +34,7 @@
     font-family: 'Inter', 'Helvetica Neue', 'Apple SD Gothic Neo', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow: hidden; /* Prevent scroll on 3D tilt */
+    overflow-x: hidden; /* Prevent horizontal scroll */
   }
 }
 
@@ -45,9 +63,19 @@
 
 /* Card specific styles */
 .card-scene {
-  width: calc(var(--card-width) * var(--card-scale));
-  height: calc(var(--card-height) * var(--card-scale));
+  /* The container takes the size of the SCALED card */
+  width: calc(var(--design-width) * var(--responsive-scale));
+  height: calc(var(--design-height) * var(--responsive-scale));
   perspective: 1500px;
+  margin: 0 auto;
+}
+
+.card-scaler {
+  width: var(--design-width);
+  height: var(--design-height);
+  transform: scale(var(--responsive-scale));
+  transform-origin: top left;
+  transform-style: preserve-3d;
 }
 
 .card-object {
